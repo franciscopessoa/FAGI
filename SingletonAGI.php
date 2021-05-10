@@ -16,7 +16,7 @@ class SingletonAGI
     {
     }
 
-    public static function getInstanceAGI()
+    public static function getInstanceAGI() : ICommands
     {
         if (self::$agi === null) {
             self::$agi = new Commands();
