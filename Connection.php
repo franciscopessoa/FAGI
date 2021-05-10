@@ -34,7 +34,7 @@ class Connection
         }
         do {
             $res = $this->read();
-        } while (strlen($res) < 2);
+        } while (strlen((string) $res) < 2);
         return $this->formatResponse($res);
     }
 
@@ -81,18 +81,10 @@ class Connection
      */
     protected function open()
     {
-        if (isset($this->options['stdin'])) {
-            $this->input = $this->options['stdin'];
-        } else {
-            $this->input = fopen('php://stdin', 'r');
-        }
-        if (isset($this->options['stdout'])) {
-            $this->output = $this->options['stdout'];
-        } else {
-            $this->output = fopen('php://stdout', 'w');
-        }
+        $this->input  = fopen('php://stdin', 'r');
+        $this->output = fopen('php://stdout', 'w');
         while (true) {
-            $line = $this->read($this->input);
+            $line = $this->read();
             if ($this->isEndOfEnvironmentVariables($line)) {
                 break;
             }

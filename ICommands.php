@@ -108,6 +108,14 @@ interface ICommands
     public function getVariable($variable, $returnData = false);
 
     /**
+     * setVariable
+     *
+     * @param  mixed $variable
+     * @return void
+     */
+    public function setVariable($variable, $value);
+
+    /**
      * dial
      *
      * @param  mixed $dial
